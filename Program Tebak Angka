@@ -11,16 +11,19 @@ public class Tebakangka {
         int[] a_tebakan = new int[10];
 
 
-        while(Tebakan != AngkaRandom && JumlahTebakan <= BatasTebakan){
+        while(Tebakan != AngkaRandom && JumlahTebakan < BatasTebakan){
             Tebakan = input.nextInt();
             JumlahTebakan++;
             a_tebakan[JumlahTebakan-1] = Tebakan;
             
             if (Tebakan == AngkaRandom){
                 System.out.println("Selamat tebakan anda benar");
-                for (int i=0; i<a_tebakan.length; i++){
-                    System.out.println(a_tebakan[i]);
-                }break;
+                System.out.println("Riwayat tebakan:");
+                for (int i=0; i<JumlahTebakan; i++){
+                    System.out.print(a_tebakan[i]+" ");
+                }
+                System.out.println("\nIni adalah jumlah dari bilangan yang sebelumnya anda tebak: "+HitungJumlah(a_tebakan));
+                break;
             }
             else if (Tebakan < AngkaRandom){
                 System.out.println("Higher!!");
@@ -29,9 +32,17 @@ public class Tebakangka {
                 System.out.println("Lower!!");
             }
         }
-        
-        if (JumlahTebakan >= BatasTebakan && Tebakan != AngkaRandom){
-            System.out.println("Yah kesempatan kamu nebak udah abis, coba lagi lain kali ya!");
+        if (JumlahTebakan >= BatasTebakan && Tebakan != AngkaRandom) {
+            System.out.println("Maaf, anda telah mencapai batas tebakan. Jawaban yang benar adalah: " + AngkaRandom);
+            System.out.println("\nIni adalah jumlah dari bilangan yang sebelumnya anda tebak: "+HitungJumlah(a_tebakan));   
         }
+        input.close();
+    }
+    static int HitungJumlah(int[] array){
+        int hasil=0;
+        for(int i=0; i< array.length; i++){
+            hasil = hasil + array[i];
+        }
+        return hasil;
     }
 }
